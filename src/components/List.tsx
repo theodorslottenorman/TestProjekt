@@ -15,7 +15,7 @@ const List: React.FC<IProps> = ({ people }) => {
             return(
             <li className="List">
                 <div className="List-Header">
-                    <img className="List-img" src={person.url} />
+                    <img className="List-img" alt="Person" src={person.url} />
                     <h2>{person.name}</h2>
 
                 </div>

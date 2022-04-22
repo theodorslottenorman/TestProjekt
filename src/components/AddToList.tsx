@@ -6,7 +6,7 @@ interface IProps {
     setPeople: React.Dispatch<React.SetStateAction<Props["people"]>> 
 }
 
-const AddToList: React.FC<IProps> = () => {
+const AddToList: React.FC<IProps> = ({people, setPeople}) => {
 
     const [input, setInput] = useState({
         name: "",
@@ -24,11 +24,19 @@ const AddToList: React.FC<IProps> = () => {
     }
 
     const handleClick = (): void => {
-        if( !input.name || !input.age || input.img)
+        if( !input.name || !input.age || !input.img)
         {
-
-
+            return 
         }
+        setPeople([
+            ...people,
+            {
+                name: input.name,
+                age: parseInt (input.age),
+                url: input.img,
+                note: input.note
+            }
+        ]);
 
 
     }
@@ -37,16 +45,16 @@ const AddToList: React.FC<IProps> = () => {
             <input type="text"
             placeholder="Name" 
             className="AddToList-input"
-            value={input.name}
-            onChange={handleChange}
+            value={input.name} 
             name="name"
+            onChange={handleChange}
             />
              <input type="text"
             placeholder="Age" 
             className="AddToList-input"
             value={input.age}
-            onChange={handleChange}
             name="age"
+            onChange={handleChange}
             />
              <input type="text"
             placeholder="Image Url" 
@@ -59,8 +67,8 @@ const AddToList: React.FC<IProps> = () => {
             placeholder="Notes" 
             className="AddToList-input"
             value={input.note}
-            onChange={handleChange}
             name="note"
+            onChange={handleChange}
             />
             
             <button 
